@@ -23,7 +23,7 @@ namespace Citizens_framework
                 line1 = Console.ReadLine();
                 Console.WriteLine("Name id age");
                 var line = Console.ReadLine(); 
-                string[] vars = line.Split(' ');
+                string[] vars = line.Split(' '); //
                 int id = int.Parse(vars[1]);
                 string name = vars[0];
                 string model = vars[0];
