@@ -58,7 +58,7 @@ namespace Citizens_framework
                 Console.WriteLine(item);
             }
             Console.ReadKey();
-
+            //asdada
         }
         
     }
