@@ -12,53 +12,45 @@ namespace Citizens_framework
         
         static void Main(string[] args)
         {
-            Citizens citizens = new Citizens();
-            string line1 = "a";
-            int age = 0;
-            
+            string input = Console.ReadLine();
+            var list1 = input.Split(' ').ToList();
+            string name;
+            uint id;
+            uint age;
+            var ids = new List<uint>();
 
-            while (line1 != "End")
+            while (list1.Count != 1 && list1[0] != "end")
             {
-                Console.WriteLine("Do u want to end");
-                line1 = Console.ReadLine();
-                Console.WriteLine("Name id age");
-                var line = Console.ReadLine(); 
-                string[] vars = line.Split(' '); //
-                int id = int.Parse(vars[1]);
-                string name = vars[0];
-                string model = vars[0];
-                age = int.Parse(vars[2]);
-                
-                if (age != 0)
+                if (list1.Count == 2)
                 {
-                    Person person = new Person();
-                    person.Id = id;
-                    person.Name = name;
-                    person.Age = age;
-                    citizens.Persons.Add(person);
+                    name = list1[0];
+                    id = uint.Parse(list1[1]);
+                    ids.Add(id);
+
                 }
-                else 
+                else if (list1.Count == 3)
                 {
-                    Robot robot = new Robot();
-                    robot.Id = id;
-                    robot.Model = model;
-                    citizens.Robots.Add(robot);
+                    name = list1[0];
+                    age = uint.Parse(list1[2]);
+                    id = uint.Parse(list1[1]);
+                    ids.Add(id);
                 }
-                
+                input = Console.ReadLine();
+                list1 = input.Split(' ').ToList();
             }
-            int fakeidnumbers = int.Parse(Console.ReadLine());
-            int fakenumberslenght = fakeidnumbers.ToString().Length;
-            citizens.Checker(fakeidnumbers, fakenumberslenght);
-            foreach (var item in citizens.Persons)
+            if (list1[0] == "end")
             {
-                Console.WriteLine(item);
-            }
-            foreach (var item in citizens.Robots)
-            {
-                Console.WriteLine(item);
+                uint checkedNumber = uint.Parse(Console.ReadLine());
+                foreach (var idnumber in ids)
+                {
+                    string parsed = idnumber.ToString();
+                    if (parsed.EndsWith(checkedNumber.ToString()))
+                    {
+                        Console.WriteLine(idnumber);
+                    }
+                }
             }
             Console.ReadKey();
-            //asdada
         }
         
     }
