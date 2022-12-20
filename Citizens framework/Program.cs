@@ -14,39 +14,54 @@ namespace Citizens_framework
         {
             string input = Console.ReadLine();
             var list1 = input.Split(' ').ToList();
-            string name;
-            uint id;
-            uint age;
-            var ids = new List<uint>();
+            Citizens citizens = new Citizens();
 
             while (list1.Count != 1 && list1[0] != "end")
             {
-                if (list1.Count == 2)
+                if (list1[0] == "Robot")
                 {
-                    name = list1[0];
-                    id = uint.Parse(list1[1]);
-                    ids.Add(id);
+                    Robot robot = new Robot()
+;                   robot.Model = list1[1];
+                    robot.Id = list1[2];
+                    citizens.Robots.Add(robot);                    
 
                 }
-                else if (list1.Count == 3)
+                else if (list1[0] == "Citizen")
                 {
-                    name = list1[0];
-                    age = uint.Parse(list1[2]);
-                    id = uint.Parse(list1[1]);
-                    ids.Add(id);
+                    Person person = new Person();
+                    person.Name = list1[1];
+                    person.Age = int.Parse(list1[2]);
+                    person.Id = list1[3];
+                    person.Birthdate = list1[4];
+                    citizens.Persons.Add(person);
+                }
+                else if (list1[0] == "Pet")
+                {
+                    Pet pet = new Pet();
+                    pet.Name = list1[1];
+                    pet.Birthdate = list1[2];
+                    citizens.Pets.Add(pet);
                 }
                 input = Console.ReadLine();
                 list1 = input.Split(' ').ToList();
             }
             if (list1[0] == "end")
             {
-                uint checkedNumber = uint.Parse(Console.ReadLine());
-                foreach (var idnumber in ids)
+                int bdnumber = int.Parse(Console.ReadLine());
+                foreach (Person person in citizens.Persons)
                 {
-                    string parsed = idnumber.ToString();
-                    if (parsed.EndsWith(checkedNumber.ToString()))
+                    string bd = person.Birthdate.ToString();
+                    if (bd.EndsWith(bdnumber.ToString()))
                     {
-                        Console.WriteLine(idnumber);
+                        Console.WriteLine(person.Name + " " + person.Birthdate);
+                    }
+                }
+                foreach (Pet pet in citizens.Pets)
+                {
+                    string bd = pet.Birthdate.ToString();
+                    if (bd.EndsWith(bdnumber.ToString()))
+                    {
+                        Console.WriteLine(pet.Name + " " + pet.Birthdate);
                     }
                 }
             }
@@ -55,3 +70,22 @@ namespace Citizens_framework
         
     }
 }
+/*
+         int checkedNumber = int.Parse(Console.ReadLine());
+         foreach (Person person in citizens.Persons)
+         {
+             string parsed = person.Id.ToString();
+             if (parsed.EndsWith(checkedNumber.ToString()))
+             {
+                 Console.WriteLine(person.Id);
+             }
+         }
+         foreach (Robot robot in citizens.Robots)
+         {
+             string parsed = robot.Id.ToString();
+             if (parsed.EndsWith(checkedNumber.ToString()))
+             {
+                 Console.WriteLine(robot.Id);
+             }
+         }
+*/

@@ -10,7 +10,8 @@ namespace Citizens_framework
     {
         private List<Person> persons = new List<Person>();
         private List<Robot> robots = new List<Robot>();
-       
+        private List<Pet> pets = new List<Pet>();
+
         public List<Person> Persons
         {
             get { return persons; }
@@ -21,24 +22,10 @@ namespace Citizens_framework
             get { return robots; }
             set { robots = value; }
         }
-        public void Checker(int fakeid1, int fakelenght)
+        public List<Pet> Pets
         {
-            foreach (var item in Persons)
-            {
-                int ids = item.Id.ToString().Length - fakelenght;
-                if (ids == fakeid1)
-                {
-                    item.Persons.Remove(item);
-                }
-            }
-            foreach (var item in Robots)
-            {
-                int ids = item.Id.ToString().Length - fakelenght;
-                if (ids == fakeid1)
-                {
-                    item.Robots.Remove(item);
-                }
-            }
+            get { return pets; }
+            set { pets = value; }
         }
     }
 }

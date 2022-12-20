@@ -12,9 +12,9 @@ namespace Citizens_framework
         
         
         private string model;
-        private int id;
+        private string id;
 
-        public int Id
+        public string Id
         {
             get { return id; }
             set { id = value; }
